@@ -1,0 +1,21 @@
+app_name: "PolyTask"
+
+priorities:
+  1: "Basse"
+  2: "Moyenne"
+  3: "Haute"
+
+# Choix des groupes pour la liste déroulante
+# groups:
+#   - "DevOps"
+#   - "Dev"
+#   - "Perso"
+#   - "Admin"
+
+# Configuration du rapport hebdo
+# Jours possibles : monday, tuesday, wednesday, thursday, friday, saturday, sunday
+weekly_report_day: "friday"
+weekly_report_time: "20:00"
+
+# Configuration des rappels d'échéance (en minutes avant la date)
+reminder_minutes: 5

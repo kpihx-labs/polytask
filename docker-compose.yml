@@ -1,0 +1,39 @@
+services:
+  polytask:
+    build: .
+    container_name: polytask
+    restart: unless-stopped
+    # On charge le fichier .env localement
+    env_file:
+      - .env
+    # Variables d'environnement supplémentaires si besoin
+    environment:
+      # Pour que le conteneur puisse parler à Postgres qui est aussi dans Docker
+      - DB_HOST=postgres
+      - TZ=Europe/Paris
+    
+    networks:
+      - proxy
+
+    # On force Streamlit à accepter les connexions externes et désactiver le CORS
+    command: >
+      streamlit run app.py
+      --server.port=8501
+      --server.address=0.0.0.0
+      --server.enableCORS=false
+      --server.enableXsrfProtection=false
+      --server.enableWebsocketCompression=false
+      --browser.gatherUsageStats=false
+    
+    labels:
+      - "traefik.enable=true"
+      # Ton URL locale
+      - "traefik.http.routers.polytask.rule=Host(`task.homelab`)"
+      - "traefik.http.routers.polytask.entrypoints=websecure"
+      - "traefik.http.routers.polytask.tls=true"
+      # Protection par mot de passe (ton middleware existant)
+      - "traefik.http.routers.polytask.middlewares=auth"
+
+networks:
+  proxy:
+    external: true
