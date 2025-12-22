@@ -1,0 +1,21 @@
+# Ignorer la config Git
+.git
+.gitignore
+
+# Ignorer les secrets (Crucial !)
+.env
+.env.example
+
+# Ignorer les fichiers de documentation dans l'image
+README.md
+LICENSE
+
+# Ignorer les fichiers temporaires Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorer les environnements virtuels locaux
+venv
+.venv
