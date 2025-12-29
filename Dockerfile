@@ -3,6 +3,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Désactive le buffering Python pour que stdout/stderr remonte immédiatement
+ENV PYTHONUNBUFFERED=1
+
 # Installation des dépendances système nécessaires pour compiler psycopg2
 # On utilise apt-get (Debian) et pas apk (Alpine)
 RUN apt-get update && \

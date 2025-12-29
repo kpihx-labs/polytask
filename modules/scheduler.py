@@ -3,7 +3,7 @@ import schedule
 import yaml
 import os
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime
 from database.db import get_tasks
 from modules.notifications import send_telegram
 
@@ -113,8 +113,8 @@ def weekly_report():
         
         msg = f"📅 **BILAN HEBDOMADAIRE**\nTotal : **{total}** tâches (Dont {high_prio} urgentes)\n"
         
-        # On liste les 5 plus urgentes/vieilles
-        top_tasks = df.sort_values(by=['priority', 'due_date'], ascending=[False, True]).head(5)
+        # On liste les 10 plus urgentes/vieilles
+        top_tasks = df.sort_values(by=['priority', 'due_date'], ascending=[False, True]).head(10)
         
         msg += "\n🔥 **Top Priorités :**\n"
         for _, row in top_tasks.iterrows():
@@ -145,9 +145,11 @@ def run_scheduler():
     # 3. Programmation Hebdo dynamique
     day = config.get('weekly_report_day', 'monday').lower()
     at_time = config.get('weekly_report_time', '09:00')
+    print(f"🕒 Heure système du conteneur : {datetime.now()}")
+    # print(day, at_time)
     
     try:
-        # Magie python pour appeler schedule.every().lundi() dynamiquement
+        # Magie python pour appeler schedule.every().day() dynamiquement
         scheduler_job = getattr(schedule.every(), day)
         scheduler_job.at(at_time).do(weekly_report)
         print(f"✅ Rapport hebdo programmé : {day} à {at_time}")
