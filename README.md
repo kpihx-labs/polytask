@@ -73,7 +73,9 @@ docker compose up -d --build
 ```
 
 ### 5. Accès
-L'application sera accessible via Traefik sur : `https://task.homelab` (ou l'URL configurée dans vos labels Docker).
+L'application est accessible via deux URLs (grâce à Traefik) :
+- **Privé (Local) :** `https://task.homelab`
+- **Souverain (Certifié) :** `https://task.kpihx-labs.com` (Cadenas vert via Let's Encrypt / DNS-01)
 
 ---
 

@@ -27,12 +27,19 @@ services:
     
     labels:
       - "traefik.enable=true"
-      # Ton URL locale
+      
+      # --- Router Local (.homelab) ---
       - "traefik.http.routers.polytask.rule=Host(`task.homelab`)"
       - "traefik.http.routers.polytask.entrypoints=websecure"
       - "traefik.http.routers.polytask.tls=true"
-      # Protection par mot de passe (ton middleware existant)
       - "traefik.http.routers.polytask.middlewares=auth"
+
+      # --- Router Souverain (.kpihx-labs.com) ---
+      - "traefik.http.routers.polytask-trusted.rule=Host(`task.kpihx-labs.com`)"
+      - "traefik.http.routers.polytask-trusted.entrypoints=websecure"
+      - "traefik.http.routers.polytask-trusted.tls=true"
+      - "traefik.http.routers.polytask-trusted.tls.certresolver=myresolver"
+      - "traefik.http.routers.polytask-trusted.middlewares=auth"
 
 networks:
   proxy:
