@@ -10,7 +10,7 @@ load_dotenv()
 def get_engine():
     """Crée un moteur SQLAlchemy pour les lectures Pandas (supprime le Warning)."""
     user = os.getenv("DB_USER")
-    password = os.getenv("DB_PASS")
+    password = os.getenv("POSTGRES_PASSWORD")
     host = os.getenv("DB_HOST")
     db_name = os.getenv("DB_NAME")
     # Chaîne de connexion standard : postgresql+psycopg2://user:pass@host/db
@@ -23,7 +23,7 @@ def get_connection():
         host=os.getenv("DB_HOST"),
         database=os.getenv("DB_NAME"),
         user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASS")
+        password=os.getenv("POSTGRES_PASSWORD")
     )
 
 def init_db():

@@ -16,9 +16,9 @@ deploy_homelab:
     - echo "DB_HOST=postgres" > .env
     - echo "DB_NAME=app_db" >> .env
     - echo "DB_USER=admin" >> .env
-    - echo "DB_PASS=$DB_PASS" >> .env
-    - echo "TELEGRAM_TOKEN=$TELEGRAM_TOKEN" >> .env
-      - echo "TELEGRAM_CHAT_ID=$TELEGRAM_CHAT_ID" >> .env
+      - echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
+      - echo "TELEGRAM_HOMELAB_TOKEN=$TELEGRAM_HOMELAB_TOKEN" >> .env
+      - echo "TELEGRAM_CHAT_IDS=$TELEGRAM_CHAT_IDS" >> .env
     
     # On ajoute le proxy (hérité des variables de groupe si configuré, sinon on le force ici par sécurité)
     # - echo "http_proxy=http://129.104.201.11:8080" >> .env
