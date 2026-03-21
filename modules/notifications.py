@@ -4,7 +4,7 @@ import os
 def send_telegram(message):
     """Envoie un message Telegram si les tokens sont présents."""
     token = os.getenv("TELEGRAM_TOKEN")
-    chat_id = os.getenv("CHAT_ID")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
     
     if not token or not chat_id:
         print("⚠️ Pas de config Telegram trouvée.")
